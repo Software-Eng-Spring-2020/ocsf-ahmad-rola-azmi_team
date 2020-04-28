@@ -41,7 +41,10 @@ public class ChatClientCLI {
 								client.sendToServer(submitters);
 							}
 							else {
-								String newMessage = message.substring(6,message.length());
+								String newMessage = message.substring(5,message.length());
+								if(newMessage.isBlank()) {
+									newMessage = "blank message";
+								}
 								client.sendToServer(newMessage);
 							}
 							
