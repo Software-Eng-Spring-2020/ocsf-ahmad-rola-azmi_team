@@ -9,6 +9,7 @@ public class ChatClientCLI {
 
 	private SimpleChatClient client;
 	private boolean isRunning;
+	private String submitters = "Ahmed Massalha, Rola Marie, Azmi Abu Ahmad";
 	private static final String SHELL_STRING = "Enter message (or exit to quit)> ";
 	private Thread loopThread;
 
@@ -32,11 +33,18 @@ public class ChatClientCLI {
 						if (message.isBlank())
 							continue;
 
-						if (message.equalsIgnoreCase("exit")) {
+						if (message.equalsIgnoreCase("#exit")) {
 							System.out.println("Closing connection.");
 								client.closeConnection();
 						} else {
-							client.sendToServer(message);
+							if (message.equalsIgnoreCase("#sendSubmitters")) {
+								client.sendToServer(submitters);
+							}
+							else {
+								String newMessage = message.substring(6,message.length());
+								client.sendToServer(newMessage);
+							}
+							
 						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
