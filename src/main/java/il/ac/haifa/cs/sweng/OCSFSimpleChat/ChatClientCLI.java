@@ -42,6 +42,7 @@ public class ChatClientCLI {
 							}
 							else {
 								String newMessage = message.substring(5,message.length());
+								//incase blank message after #send
 								if(newMessage.isBlank()) {
 									newMessage = "blank message";
 								}
