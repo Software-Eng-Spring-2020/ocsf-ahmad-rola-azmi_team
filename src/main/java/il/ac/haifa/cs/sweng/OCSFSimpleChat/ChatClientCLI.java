@@ -31,16 +31,16 @@ public class ChatClientCLI {
 						if (message.isBlank())
 							continue;
 
-						if (message.equalsIgnoreCase("#exit")) {
+						if (message.equalsIgnoreCase("exit")) {
 								System.out.println("Closing connection.");
 								client.closeConnection();
 								
 						} else {
-							if (message.equalsIgnoreCase("#sendSubmitters")) {
+							if (message.equalsIgnoreCase("sendSubmitters")) {
 								client.sendToServer(submitters);
 							}
 							else {
-								if(message.startsWith("#send")) {
+								if(message.startsWith("send")) {
 									String newMessage = message.substring(5,message.length());
 									//incase blank message after #send
 									if(newMessage.isBlank()) {
