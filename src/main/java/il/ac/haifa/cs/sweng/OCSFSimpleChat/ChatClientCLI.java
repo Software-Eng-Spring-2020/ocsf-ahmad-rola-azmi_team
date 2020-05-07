@@ -1,10 +1,8 @@
 package il.ac.haifa.cs.sweng.OCSFSimpleChat;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
-
 public class ChatClientCLI {
 
 	private SimpleChatClient client;
@@ -34,19 +32,25 @@ public class ChatClientCLI {
 							continue;
 
 						if (message.equalsIgnoreCase("#exit")) {
-							System.out.println("Closing connection.");
+								System.out.println("Closing connection.");
 								client.closeConnection();
+								
 						} else {
 							if (message.equalsIgnoreCase("#sendSubmitters")) {
 								client.sendToServer(submitters);
 							}
 							else {
-								String newMessage = message.substring(5,message.length());
-								//incase blank message after #send
-								if(newMessage.isBlank()) {
-									newMessage = "blank message";
+								if(message.startsWith("#send")) {
+									String newMessage = message.substring(5,message.length());
+									//incase blank message after #send
+									if(newMessage.isBlank()) {
+										newMessage = "sent a blank message";
+									}
+									client.sendToServer(newMessage);
 								}
-								client.sendToServer(newMessage);
+								else {
+									client.sendToServer("no command found");
+								}
 							}
 							
 						}
