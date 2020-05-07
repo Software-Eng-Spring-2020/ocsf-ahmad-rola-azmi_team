@@ -49,6 +49,7 @@ public class ChatClientCLI {
 									client.sendToServer(newMessage);
 								}
 								else {
+									//else no command
 									client.sendToServer("no command found");
 								}
 							}
